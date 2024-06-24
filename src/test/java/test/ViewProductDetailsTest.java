@@ -31,7 +31,7 @@ public class ViewProductDetailsTest extends BaseTest{
 		
 		ProductResultPage productResultPage=new ProductResultPage(driver);
 		String productTitle=productResultPage.getProductTitle(1);
-		String productPrice=productResultPage.getProductPrice(1);
+		double productPrice=productResultPage.getProductPrice(1);
 		productResultPage.moveToDesiredProduct(driver, 1);
 		productResultPage.clickOnQuickView(1);
 	    Assert.assertEquals(productTitle, productResultPage.getProductTitleOnQuickView());
@@ -48,7 +48,7 @@ public class ViewProductDetailsTest extends BaseTest{
         
 		ProductResultPage productResultPage=new ProductResultPage(driver);
 		String ExpectedTitle=productResultPage.getProductTitle(0);
-		String ExpectedPrice=productResultPage.getProductPrice(0);
+		Double ExpectedPrice=productResultPage.getProductPrice(0);
 		productResultPage.selectDesiredProduct(0);
 		Set<String> handles=driver.getWindowHandles();
 		Iterator <String> i=handles.iterator();

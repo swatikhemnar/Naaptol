@@ -8,7 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ProductResultPage {
+public class ProductResultPage extends BasePage{
 	WebDriver driver;
 	@FindBy (xpath = "//div[@class='grid_Square ']")private List<WebElement> products;
 	@FindBy(xpath="//a[@class='bt_compare icon chat quickFancyBox']")private List<WebElement> quickView;
@@ -44,8 +44,8 @@ public class ProductResultPage {
 	}
 	
 	
-	public String getProductPrice(int index) {
-		return offerPrice.get(index).getText();
+	public Double getProductPrice(int index) {
+		return Double.parseDouble(removeCommaFromString(offerPrice.get(index).getText()));
 	}
 	
 	public String getProductTitleOnQuickView() {
@@ -53,9 +53,9 @@ public class ProductResultPage {
 		
 	}
 	
-	public String getProductPriceOnQuickView() {
+	public double getProductPriceOnQuickView() {
 		String [] P= offerPriceOnQuickView.getText().split(" ");
-		return P[0];
+		return Double.parseDouble(removeCommaFromString(P[0]));
 	}
 
 	public String getProductTitle(int index) {

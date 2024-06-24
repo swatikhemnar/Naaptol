@@ -14,7 +14,7 @@ public class Browser {
 	{
 		WebDriverManager.chromedriver().setup();
 		WebDriver driver=new ChromeDriver();
-		driver.get("https://www.naaptol.com");
+		driver.get("https://www.naaptol.com/");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		return driver;

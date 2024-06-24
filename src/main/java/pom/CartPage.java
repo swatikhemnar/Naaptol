@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CartPage {
+public class CartPage extends BasePage{
 
 	@FindBy(xpath="//ul[@id='cartData']") private List<WebElement> noOfProductsAddedInCart;
 	@FindBy(xpath="//ul[@id='cartData']//h2") private List<WebElement> productNameInCart;
@@ -15,17 +15,18 @@ public class CartPage {
 	@FindBy(xpath="//li[@class='head_ship']") private List<WebElement> shippingPrice;
 	@FindBy(xpath="//ul[@id='shopCartHead']//a") private WebElement continueShopping;
 	@FindBy(xpath="//a[text()='Remove']") private List<WebElement> remove;
-	@FindBy(xpath="(//section[@id='ShoppingCartPopup']//span[@class='font-bold'])[1]")private WebElement noProductInCart;
+	@FindBy(xpath="//li[@class='head_Amount']") private List<WebElement> orderAmount;
+	@FindBy(xpath="//ul[@id='cartTotal']//label") private WebElement cartAmount; 
+	@FindBy(xpath="//span[@id='totalPayableAmount']") private WebElement totalAmount; 
+	@FindBy(xpath="//span[@id='cvDiscount']") private WebElement discountAmount; 
+	@FindBy(xpath="//a[@class='red_button2']") private WebElement proceedToCheckOut;
 	
 	public CartPage(WebDriver driver)
 	{
 		PageFactory.initElements(driver,this);
 	}
 	
-	public String getTextofNoProductInCart()
-	{
-		return noProductInCart.getText();
-	}
+
 	public void clickOnRemove(int index)
 	{
 		remove.get(index).click();
@@ -45,15 +46,44 @@ public class CartPage {
 		return productNameInCart.get(index).getText();
 	}
 	
-	public String getProductPriceInCart(int index)
+	public Double getProductPriceInCart(int index)
 	{
 		//Start index from 1 as 0 is table heading
-		return productPriceInCart.get(index).getText().substring(3);
+		return Double.parseDouble(removeCommaFromString(productPriceInCart.get(index).getText().substring(3)));
 	}
 	
-	public String getShippingPrice(int index)
+	public Double getShippingPrice(int index)
 	{
 		//Start index from 1 as 0 is table heading
-		return shippingPrice.get(index).getText().substring(3);
+		return Double.parseDouble(removeCommaFromString(shippingPrice.get(index).getText()).substring(3));
 	}
+	
+	public double getOrderAmount(int index) {
+		
+		//start index form 1 as 0 is heading
+		return Double.parseDouble(removeCommaFromString(orderAmount.get(index).getText()));
+		
+	}
+	
+	public double getCartAmount()
+	{
+		return Double.parseDouble(removeCommaFromString(cartAmount.getText().substring(3)));
+	}
+	
+	public double getTotalAmount()
+	{
+		return Double.parseDouble(removeCommaFromString(totalAmount.getText()));
+	}
+	
+
+	public double getDiscountAmount()
+	{
+		return Double.parseDouble(removeCommaFromString(discountAmount.getText()));
+	}
+	
+	public void clickOnProceedToCheckOut() {
+		proceedToCheckOut.click();
+
+	}
+	
 }

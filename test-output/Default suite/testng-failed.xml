@@ -5,8 +5,8 @@
     <classes>
       <class name="test.CartTest">
         <methods>
+          <include name="verifyIfUserIsAbleToFillShippingAddressForm"/>
           <include name="OpenApplication"/>
-          <include name="verifyIfUserIsAbleToAddProductsInCart"/>
         </methods>
       </class> <!-- test.CartTest -->
     </classes>

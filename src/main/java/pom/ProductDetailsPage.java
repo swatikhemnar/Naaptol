@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ProductDetailsPage {
+public class ProductDetailsPage extends BasePage {
 
 	@FindBy(xpath="//div[@id='square_Details']//h1") private WebElement childBrowserProductName;
 	@FindBy(xpath="//div[@id='square_Details']//span[@class='offer-price']") private WebElement childBrowserProductPrice;
@@ -30,16 +30,16 @@ public class ProductDetailsPage {
 		return childBrowserProductName.getText();
 	}
 	
-	public String getProductPriceOnChildBrowser()
+	public double getProductPriceOnChildBrowser()
 	{
 		String P[]=childBrowserProductPrice.getText().split(" ");
-		return P[0];
+		return Double.parseDouble(removeCommaFromString(P[0]));
 	}
  
-	public String getShippingPriceOnChildBrowser()
+	public double getShippingPriceOnChildBrowser()
 	{
 		String P[]=childBrowserProductPrice.getText().split(" ");
-		return P[2];
+		return Double.parseDouble(removeCommaFromString(P[2]));
 	}
 	
 	

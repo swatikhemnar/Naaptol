@@ -31,6 +31,13 @@ public class NaptolHomePage{
 		loginOrRegister.click();
 	}
 	
+	public String getNameOfLoginOrRegister()
+	{
+		return loginOrRegister.getText();
+	}
+	
+	
+	
 	public void clickOnTrackOrder()
 	{
 		trackOrder.click();
