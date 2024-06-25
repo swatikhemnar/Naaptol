@@ -14,7 +14,7 @@ public class Screenshots {
 	{
 		File source=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		
-		File destination=new File("D:\\GitHubPractice\\Naaptol\\resource"+name+".png");
+		File destination=new File("D:\\GitHubPractice\\Naaptol\\resource\\Screenshots"+name+".png");
 		
 		FileHandler.copy(source, destination);
 		

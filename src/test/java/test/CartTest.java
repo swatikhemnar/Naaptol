@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import pojo.Browser;
@@ -220,82 +221,39 @@ public class CartTest extends BaseTest{
 		   naptolLoginPage=new NaptolLoginPage(driver);
 		   
 		   OrderDetailPage orderDetailPage=new OrderDetailPage(driver);
-		   orderDetailPage.enterMobNoToMobileNumberFeildForProceedToCheckOut("8975934529");
+		   orderDetailPage.enterMobNoToMobileNumberFeildForProceedToCheckOut("7218124230");
 		   orderDetailPage.clickOnContinue();
 		   Thread.sleep(Duration.ofSeconds(30));
 		   orderDetailPage.clickOnSubmit();
 		   
 		   ShippingAddressPage shippingAddressPage=new ShippingAddressPage(driver);
 		   shippingAddressPage.getTitle();
-		   
+		   		   
 		   Actions actions=new Actions(driver);
 		   
-		   actions.keyDown(Keys.TAB);
-		   actions.sendKeys("Advait");
-		   actions.keyUp(Keys.TAB);
-		   Thread.sleep(2000);
-		   
-		   actions.keyDown(Keys.TAB);
-		   actions.sendKeys("Khemnar");
-		   actions.keyUp(Keys.TAB);
-		   Thread.sleep(2000);
-
-		   
-		   actions.keyDown(Keys.TAB);
-		   actions.sendKeys("Hadpsar,Pune-412208");
-		   actions.keyUp(Keys.TAB);
-		   Thread.sleep(2000);
-
-		   
-		   actions.keyDown(Keys.TAB);
-		   actions.sendKeys("Pune Solapur Highway");
-		   actions.keyUp(Keys.TAB);
-		   Thread.sleep(2000);
-
-		   actions.keyDown(Keys.TAB);
-		   actions.sendKeys("412208");
-		   actions.keyUp(Keys.TAB);
-		   Thread.sleep(2000);
-
-		   actions.keyDown(Keys.TAB);
-		   shippingAddressPage.getState();
-		   actions.keyUp(Keys.TAB);
-		   Thread.sleep(2000);
-
-		   actions.keyDown(Keys.TAB);
+		   actions.sendKeys(Keys.TAB).sendKeys("Advait").perform();
+		   actions.sendKeys(Keys.TAB).sendKeys("Khemnar").perform();
+		   actions.sendKeys(Keys.TAB).sendKeys("Hadpasar,Pune").perform();
+		   actions.sendKeys(Keys.TAB).sendKeys("pune solapur highway").perform();
+		   actions.sendKeys(Keys.TAB).sendKeys("412208").perform();
+		   actions.sendKeys(Keys.TAB).perform();	
+		   shippingAddressPage.getState("MAHARASHTRA");
+		   actions.sendKeys(Keys.TAB).perform();	
 		   shippingAddressPage.getCity();
-		   actions.keyUp(Keys.TAB);
-		   Thread.sleep(2000);
-
-		   actions.keyDown(Keys.TAB);
-           actions.sendKeys("8975934529");
-		   actions.keyUp(Keys.TAB);
-		   Thread.sleep(2000);
-
-		   actions.keyDown(Keys.TAB);
-           actions.sendKeys("");
-		   actions.keyUp(Keys.TAB);
-		   Thread.sleep(2000);
-
-		   actions.keyDown(Keys.TAB);
-           actions.click();
-		   actions.keyUp(Keys.TAB);
-		   Thread.sleep(2000);
+		   actions.sendKeys(Keys.TAB).sendKeys("9999999999").perform();
+		   actions.sendKeys(Keys.TAB).sendKeys("").perform();
+		   actions.sendKeys(Keys.TAB).click().perform();
+		   
+		   Assert.assertTrue(shippingAddressPage.isshipAddressDisplayed());
+		   
+		   shippingAddressPage.clickOnShipAddressButton();
+			  
+		   PaymentPage paymentPage=new PaymentPage(driver);
+			  
+		   Assert.assertTrue(paymentPage.istypeOfPyementSliderDispayed());
 
 		   
-		   actions.build().perform();
-		   
-		   System.out.print("test completed.....");
-		   
-		  // Assert.assertTrue(shippingAddressPage.isshipAddressDisplayed());
-		   
-		  shippingAddressPage.clickOnShipAddressButton();
-		  
-		  PaymentPage paymentPage=new PaymentPage(driver);
-		  
-		  Assert.assertTrue(paymentPage.istypeOfPyementSliderDispayed());
-
-	}
+		 	}
 	
 	}
  

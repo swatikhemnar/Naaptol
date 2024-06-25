@@ -19,12 +19,17 @@ public class NaptolHomePage{
 	@FindBy(xpath="//div[@id='mainMenuContent']//ul//li[1]//a//span") private WebElement listIteam;
 	@FindBy(xpath="//div[@id='page1']/div") private List <WebElement> productList;
 	@FindBy(xpath="//input[@id='registration-basic-panel-mobile']") private WebElement MobileNoOnLoginPopUp;
+	@FindBy(xpath="//h1[text()='My Shopping Cart: ']") private WebElement myshoppingCart;
 	
 	public NaptolHomePage(WebDriver driver)
 	{
 		PageFactory.initElements(driver, this);
 	}
 	
+	public boolean isMyshoppincartDisplayed()
+	{
+		return myshoppingCart.isDisplayed();
+	}
 
 	public void clickOnLoginOrRegister()
 	{

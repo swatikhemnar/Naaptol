@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 public class ShippingAddressPage {
 	
 	@FindBy(xpath="//select[@name='fktitle_id']")private WebElement title;
-	@FindBy(xpath="//a[@id='shipAddress1']")private WebElement shipAddressButton;
+	@FindBy(xpath="//span[text()=' Ship to This Address ']")private WebElement shipAddressButton;
 	@FindBy(xpath="//select[@name='state']")private WebElement state;
 	@FindBy(xpath="//select[@name='city']")private WebElement city;
 	@FindBy(xpath="")private WebElement firstName;
@@ -30,13 +30,13 @@ public class ShippingAddressPage {
 	public void getTitle()
 	{
 	   Select obj=new Select(title);
-	   obj.selectByIndex(0);
+	   obj.selectByIndex(1);
 	}
 	
-	public void getState()
+	public void getState(String state1)
 	{
 	   Select obj=new Select(state);
-	   obj.selectByVisibleText("MAHARASHTRA");
+	   obj.selectByVisibleText(state1);
 	}
 	
 	public void getCity()

@@ -1,24 +1,28 @@
 package test;
 
-import org.openqa.selenium.By;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import pojo.Browser;
 import pom.NaptolHomePage;
 
+@Listeners(test.Listeners.class)
+
 public class ProductSearchTest extends BaseTest {
-	@BeforeMethod
-	public void OpenApplication()
-	{
-		driver=Browser.launchApplication();
-	}
 	
-	@Test
+	  @BeforeMethod public void OpenApplication()
+	  {
+	      driver=Browser.launchApplication(); 
+	  }
+	 
+	@Test(priority=2)
 	public void verifyIfUserIsAbleToSearchProduct()
 	{
+		reports.createTest("verifyIfUserIsAbleToSearchProduct");
 		NaptolHomePage naptolHomePage=new NaptolHomePage(driver);
 		//naptolHomePage.enterProductToSearch("iphone");
 		naptolHomePage.enterProductToSearch("mobile");
@@ -29,9 +33,10 @@ public class ProductSearchTest extends BaseTest {
 		
 	}
 	
-	@Test
+	@Test(priority=1)
 	public void verifyIfUserIsAbleToClickOnLoginLink()
 	{
+		reports.createTest("verifyIfUserIsAbleToClickOnLoginLink");
 		NaptolHomePage naptolHomePage=new NaptolHomePage(driver);
 		naptolHomePage.clickOnLoginOrRegister();
 		boolean result=naptolHomePage.isMobileNoOnLoginPopUpDisplayed();
@@ -46,9 +51,10 @@ public class ProductSearchTest extends BaseTest {
 	}
 	
 	
-	@Test
+	@Test(priority=3)
 	public void verifyIfUserIsAbleToClickOnTrackOrderLink()
 	{
+		reports.createTest("verifyIfUserIsAbleToClickOnTrackOrderLink");
 		NaptolHomePage naptolHomePage=new NaptolHomePage(driver);
 		naptolHomePage.clickOnTrackOrder();
 		String expectedTitle="Naaptol Track Order - Track Online Order Status";
@@ -58,9 +64,10 @@ public class ProductSearchTest extends BaseTest {
 	}
 	
 	
-	@Test
+	@Test(priority=4)
 	public void verifyIfUserIsAbleToDisplayShoppingCategories()
 	{
+		reports.createTest("verifyIfUserIsAbleToDisplayShoppingCategories");
 		NaptolHomePage naptolHomePage=new NaptolHomePage(driver);
 		naptolHomePage.viewShoppingCategories(driver);
 		Assert.assertTrue(naptolHomePage.isListedItemDisplayed());
@@ -68,19 +75,20 @@ public class ProductSearchTest extends BaseTest {
 	}
 	
 	
-	@Test
+	@Test(priority=5)
 	public void verifyIfUserIsAbleToClickOnShoppingCart()
 	{
+		reports.createTest("verifyIfUserIsAbleToClickOnShoppingCart");
 		NaptolHomePage naptolHomePage=new NaptolHomePage(driver);
 		naptolHomePage.clickOnShoppingCart();
-		Assert.assertTrue(driver.findElement(By.xpath("//h1[text()='My Shopping Cart: ']")).isDisplayed());
+		Assert.assertTrue(naptolHomePage.isMyshoppincartDisplayed());
 		
 	}
 	
-	@AfterMethod
-	public void closeApplication()
-	{
-		driver.close();
-	}
-
+	
+	  @AfterMethod public void closeApplication()
+	  { 
+		  driver.close(); 
+	  }
+	 
 }
